@@ -12,7 +12,6 @@ export default function Organizations() {
   const [organizations, setOrganizations] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // form state
   const [showForm, setShowForm] = useState(false);
   const [editingOrg, setEditingOrg] = useState(null);
 
@@ -40,7 +39,6 @@ export default function Organizations() {
   const handleEdit = (org) => {
     setEditingOrg(org);
     setShowForm(true);
-    // Scroll into view or focus
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
@@ -65,7 +63,6 @@ export default function Organizations() {
       setEditingOrg(null);
       await load();
     } catch (err) {
-      // rethrow so form shows errors
       throw err;
     }
   };

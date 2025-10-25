@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import StatusBadge from "./StatusBadge";
 
 export default function OrganizationTable({ organizations = [], onEdit, onDelete }) {
   return (
@@ -9,6 +10,7 @@ export default function OrganizationTable({ organizations = [], onEdit, onDelete
           <tr>
             <th>Organization Name</th>
             <th>Slug</th>
+            <th style={{width:'80px'}}>Max coordinators</th>
             <th>Status</th>
             <th style={{width: "150px"}}>Action</th>
           </tr>
@@ -25,7 +27,17 @@ export default function OrganizationTable({ organizations = [], onEdit, onDelete
                 </Link>
               </td>
               <td>{org.slug}</td>
-              <td>{org.status}</td>
+              <td>
+              <td>{org.max_coordinators}</td>
+
+
+              </td>
+
+              <td>
+              <td>
+              <StatusBadge status={org.status} />
+              </td>              
+            </td>
               <td>
                 <button className="btn btn-sm btn-primary me-2" onClick={() => onEdit(org)}>Edit</button>
 

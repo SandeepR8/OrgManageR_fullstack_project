@@ -16,7 +16,6 @@ export default function OrganizationForm({ initialData = null, onCancel, onSubmi
 
   useEffect(() => {
     if (initialData) {
-      // Map server fields if necessary
       setForm({
         Organization_name: initialData.Organization_name || "",
         email: initialData.email || "",
@@ -42,10 +41,8 @@ export default function OrganizationForm({ initialData = null, onCancel, onSubmi
     try {
       await onSubmit(form);
     } catch (err) {
-      // Normalize axios error shape
       const server = err?.response?.data;
       if (server) {
-        // server can be object or string
         setErrors(server);
       } else {
         setErrors({ non_field_errors: ["Unknown error"] });

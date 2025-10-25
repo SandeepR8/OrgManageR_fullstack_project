@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { fetchOrganization, deleteOrganization } from "../api/api.js";
 import UserTable from "../components/UserTable.jsx";
+import OrganizationForm from "../components/OrganizationForm.jsx";
 
 export default function OrganizationDetailPage() {
   const { slug } = useParams();
@@ -22,14 +23,12 @@ export default function OrganizationDetailPage() {
 
   useEffect(() => {
     load();
-    // eslint-disable-next-line
   }, [slug]);
 
   const handleDeleteOrg = async () => {
     if (!window.confirm("Delete this organization?")) return;
     try {
       await deleteOrganization(slug);
-      // navigate back to organizations list
       window.location.href = "/organizations";
     } catch (err) {
       console.error("Delete failed", err);
@@ -46,9 +45,18 @@ export default function OrganizationDetailPage() {
         <div>
           <h2>{organization.Organization_name}</h2>
           <p className="mb-1"><strong>Slug:</strong> {organization.slug}</p>
+          <div className="d-flex align-items-center gap-5">
           <p className="mb-1"><strong>Email:</strong> {organization.email}</p>
-          <p className="mb-1"><strong>Phone:</strong> {organization.phone_number}</p>
+          <p className="mb-1"><strong>Phone:</strong> {organization.phone_number}</p></div>
+          <strong>Website: </strong>
+            <code className="mb-1">
+              <a href={`${organization.website}`} target="_blank" rel="noopener noreferrer" className="text-decoration-none">
+                {organization.website}
+              </a>
+            </code>
+          <pre className="mb-1 mt-1"><strong>Address:</strong>{organization.address}</pre>
           <p className="mb-1"><strong>Max Coordinators:</strong> {organization.max_coordinators}</p>
+
         </div>
         <div>
           <Link to="/organizations" className="btn btn-secondary me-2">Back</Link>

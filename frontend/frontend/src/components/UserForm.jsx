@@ -19,7 +19,6 @@ export default function UserForm({ organizations = [], initialData = null, onCan
     } else if (organizations.length > 0 && !form.organization) {
       setForm(prev => ({ ...prev, organization: organizations[0].id }));
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [initialData, organizations]);
 
   const change = e => {
