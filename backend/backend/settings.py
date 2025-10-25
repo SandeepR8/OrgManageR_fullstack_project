@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_extensions',
 ]
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
